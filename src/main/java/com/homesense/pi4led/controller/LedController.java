@@ -28,11 +28,9 @@ public class LedController {
     }
 
     @RequestMapping("/LightsOff")
-    public void lightsOff() {
+    public String lightsOff() {
 
-        pin.blink(100,10000);
+        return pin.getState().toString();
 
-        GpioController gpio = GpioFactory.getInstance();
-        pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, "MyLED", PinState.LOW);
     }
 }
