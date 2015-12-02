@@ -22,13 +22,17 @@ public class LedController {
         }
 
         pin.blink(100,1000);
-        pin.blink(200,1000);
-        pin.blink(500,1000);
-        pin.blink(1000,2000);
-        pin.blink(3000,3000);
         pin.toggle();
 
         return "OK";
     }
 
+    @RequestMapping("/LightsOff")
+    public void lightsOff() {
+
+        pin.blink(100,10000);
+
+        GpioController gpio = GpioFactory.getInstance();
+        pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, "MyLED", PinState.LOW);
+    }
 }
